@@ -1,0 +1,80 @@
+{
+  "name": "customer-management",
+  "version": "0.1.0",
+  "description": "Node.js express apps with TypeScript",
+  "author": "Ahmed Khalaf",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run serve",
+    "build": "npm run build-ts && npm run tslint",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon -V dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "test": "jest",
+    "watch-test": "npm run test -- --watchAll",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ]
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "connect-mongo": "^2.0.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^4.3.0",
+    "lusca": "^1.5.2",
+    "mongoose": "^4.13.11",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/async": "^2.0.45",
+    "@types/bluebird": "^3.5.20",
+    "@types/body-parser": "^1.16.8",
+    "@types/compression": "^0.0.35",
+    "@types/connect-mongo": "^0.0.35",
+    "@types/dotenv": "^4.0.2",
+    "@types/express": "^4.11.1",
+    "@types/express-session": "^1.15.8",
+    "@types/jest": "^22.1.3",
+    "@types/lodash": "^4.14.91",
+    "@types/lusca": "^1.5.0",
+    "@types/mongodb": "^3.0.5",
+    "@types/mongoose": "^4.7.34",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^9.4.6",
+    "@types/request": "^2.47.0",
+    "@types/supertest": "^2.0.4",
+    "concurrently": "^3.5.1",
+    "jest": "^22.0.4",
+    "nodemon": "^1.18.9",
+    "supertest": "^3.0.0",
+    "ts-jest": "^22.0.4",
+    "ts-node": "^5.0.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
+  }
+}
