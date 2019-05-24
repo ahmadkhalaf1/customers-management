@@ -1,0 +1,16 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:focus,
+a:active {
+  background: #dee2e6 !important;
+}
+a:hover {
+  background: #17a2b8 !important;
+}
+.nav-caption {
+  display: inline-block;
+  padding-left: 6px;
+}

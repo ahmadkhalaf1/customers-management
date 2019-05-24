@@ -1,0 +1,53 @@
+<section fxFlexAlign="stretch">
+  <div fxFlexAlign="center">
+    <form #formDirective="ngForm" [formGroup]="customerForm" autocomplete="off" novalidate
+      (ngSubmit)="onFormSubmit(formDirective)" fxLayoutGap="10px">
+      <div class="add-customer-container mat-elevation-z8">
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput  placeholder="Customer Id"  type="number" (change)="checkCustomerIdTaken($event)" [required]="true" formControlName="customerID"
+            id="customerID">
+          <mat-error *ngIf="hasError('customerID', 'required')">Customer Id is required</mat-error>
+          <mat-error *ngIf="hasError('customerID','customerIdTaken')">Customer Id is taken , try another one</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput placeholder="First Name" [required]="true" formControlName="firstName" id="firstName">
+          <mat-error *ngIf="hasError('firstName', 'required')">First Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput placeholder="Last Name" [required]="true" formControlName="lastName">
+          <mat-error *ngIf="hasError('lastName', 'required')">Last Name is required</mat-error>
+        </mat-form-field>
+        <label for="gender" class="gender">Gender* </label>
+        <mat-radio-group labelPosition="before" name="gender" formControlName="gender" [required]="true">
+          <mat-radio-button color="primary" value="m">Male</mat-radio-button>
+          <mat-radio-button color="primary" value="w">Female</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput [matDatepicker]="birthday" [required]="true" placeholder="Choose a date of birth"
+            formControlName="birthday" id="birthday" readonly (click)="birthday.open()">
+          <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+          <mat-datepicker #birthday></mat-datepicker>
+          <mat-error *ngIf="hasError('birthday', 'required')">Birth date is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput [matDatepicker]="lastContact" [required]="true" placeholder="Choose a last contact date"
+            formControlName="lastContact" id="lastContact" readonly (click)="lastContact.open()">
+          <mat-datepicker-toggle matSuffix [for]="lastContact"></mat-datepicker-toggle>
+          <mat-datepicker #lastContact></mat-datepicker>
+          <mat-error *ngIf="hasError('lastContact', 'required')">Last contact day is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [hideRequiredMarker]="false">
+          <input matInput placeholder="Life Time Value" [required]="true" type="number"
+            formControlName="customerLifetimeValue" id="customerLifetimeValue">
+          <mat-error *ngIf="hasError('customerLifetimeValue', 'required')">Life time value is required</mat-error>
+        </mat-form-field>
+
+        <button mat-button [disabled]="customerForm.invalid">{{editMode?'Update' : 'Add'}}</button>
+      </div>
+    </form>
+  </div>
+</section>

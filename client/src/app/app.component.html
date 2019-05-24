@@ -1,0 +1,16 @@
+<app-layout>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+      <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</app-layout>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#6db4d7" type="square-jelly-box">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
