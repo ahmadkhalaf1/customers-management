@@ -10,6 +10,10 @@ export class ToasterService {
     this.toastr.success(message, "Success!");
   }
   showError(message) {
-    this.toastr.error(message, "Error!");
+    let messageText =
+      typeof message === "string" && message
+        ? message
+        : "System Error please contact support";
+    this.toastr.error(messageText, "Error!");
   }
 }

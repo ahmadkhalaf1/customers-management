@@ -15,6 +15,9 @@ import { MONGODB_URI } from "./util/secrets";
 import { default as Customers, CustomerModel } from "./models/Customers";
 import fs from "fs";
 
+// router helpers
+import validationObject from "./util/routeValidator";
+
 const MongoStore = mongo(session);
 
 // Load environment variables from .env file, where API keys and passwords are configured
@@ -133,9 +136,17 @@ app.use(express.static(path.join(__dirname, "public")));
  * API examples routes.
  */
 
-app.post("/api/v1/customers", customerController.createCustomer);
+app.post(
+  "/api/v1/customers",
+  validationObject.validateBody(validationObject.schemas.customerSchema),
+  customerController.createCustomer
+);
 
-app.put("/api/v1/customers", customerController.updateCustomer);
+app.put(
+  "/api/v1/customers",
+  validationObject.validateBody(validationObject.schemas.customerSchema),
+  customerController.updateCustomer
+);
 
 app.get("/api/v1/customers", customerController.getCustomers);
 

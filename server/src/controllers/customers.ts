@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { default as Customers, CustomerModel } from "../models/Customers";
+
 /**
  * POST /api/v1/customers
  * Create a new customer.
@@ -109,13 +110,13 @@ export let updateCustomer = (
   };
 
   Customers.update(query, update, options, (err: any, doc: CustomerModel) => {
-    if (err) return res.status(500).send(err);
+    if (err) return res.status(500).json({message:err});
 
     const response = {
       message: "Customer successfully updated",
       id: req.params.id
     };
-    return res.status(200).send(response);
+    return res.status(200).json(response);
   });
 };
 
@@ -171,11 +172,18 @@ export let deleteCustomers = async (
   };
 
   Customers.findOneAndUpdate(query, update, options, (err, doc) => {
-    if (err) return res.status(500).send(err);
+    if (err) return res.status(500).json({ message: err });
+    if (doc) {
+      const response = {
+        message: "Customer successfully deleted",
+        id: req.params.id
+      };
+      return res.status(200).json(response);
+    }
     const response = {
-      message: "Customer successfully deleted",
+      message: "Customer with this id does not exist",
       id: req.params.id
     };
-    return res.status(200).send(response);
+    return res.status(400).json(response);
   });
 };
